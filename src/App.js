@@ -408,18 +408,27 @@ class App extends React.Component {
                       });
                     }}
                     onMouseUp={() => {
+                      let arr = this.state.data;
+                      for(let i=0;i<this.state.rows;i++){
+                        for(let j=0;j<this.state.cols;j++){
+                          if(document.getElementById(`node-${i}-${j}`).className === "cell block"){
+                            arr[i][j] = 1;
+                          }
+                        }
+                      }
                       this.setState({
                         isMouse: false,
+                        data: arr
                       });
                     }}
                     onMouseEnter={() => {
                       if (this.state.isMouse && this.state.keepBlock) {
-                        let lst = this.state.data;
-                        lst[i][j] = 1;
-                        console.log(lst);
-                        this.setState({
-                          data: lst,
-                        });
+                        // let lst = this.state.data;
+                        // lst[i][j] = 1;
+                        // console.log(lst);
+                        // this.setState({
+                        //   data: lst,
+                        // });
                         document.getElementById(`node-${i}-${j}`).className =
                           "cell block";
                       }
