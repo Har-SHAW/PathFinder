@@ -1,38 +1,146 @@
-.App {
-  text-align: center;
+.cell{
+  height: 3.13vh;
+  width: 1.66vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* .cell{
+  height: 1.88vh;
+  width: 1.25vw;
+} */
+
+.source{
+  background-color: blue;
+  border-radius: 100%;
+  animation-name: normal;
+  animation-duration: 100ms; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: none;
+  animation-play-state: running;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.destination{
+  background-color: blueviolet;
+  animation-name: normal;
+  animation-duration: 100ms; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  border-radius: 100%;
+}
+
+.block{
+  background-color: grey;
+  animation-name: normal;
+  animation-duration: 100ms; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  border-radius: 0%;
+}
+
+.animate{
+  background-color: yellow;
+  animation-name: stretch;
+  animation-duration: 4s; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  border-radius: 35%;
+}
+
+.spath{
+  background-color: lightcoral;
+  animation-name: apath;
+  animation-duration: 400ms; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+
+.snormal{
+  animation-name: normal;
+  animation-duration: 200ms; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  border-radius: 35%;
+}
+
+
+
+@keyframes stretch {
+  0% {
+    transform: scale(.3);
+    background-color: red;
+    border-radius: 100%;
+  }
+  25%{
+    transform: scale(.6);
+  }
+  50% {
+    transform: scale(.9);
+    background-color: orange;
+  }
+  75%{
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    background-color: yellow;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes apath {
+  0% {
+    transform: scale(.3);
+    border-radius: 100%;
   }
-  to {
-    transform: rotate(360deg);
+  25%{
+    transform: scale(.6);
+  }
+  50% {
+    transform: scale(.9);
+  }
+  75%{
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes normal {
+  0% {
+    transform: scale(.3);
+  }
+  25%{
+    transform: scale(.6);
+  }
+  50% {
+    transform: scale(.9);
+  }
+  75%{
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
