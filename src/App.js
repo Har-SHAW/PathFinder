@@ -20,9 +20,13 @@ class App extends React.Component {
       source: "0 0",
       repeat: 4,
       isMouse: false,
+      disable: false,
     };
   }
   animate(data, prev, rr, cc) {
+    this.setState({
+      disable: true,
+    });
     for (let i = 0; i <= data.length; i++) {
       if (i === data.length) {
         setTimeout(() => {
@@ -58,6 +62,9 @@ class App extends React.Component {
           document.getElementById(arr[i]).className = "cell spath";
       }, 50 * i);
     }
+    this.setState({
+      disable: false,
+    });
   }
 
   componentDidMount() {
@@ -137,27 +144,6 @@ class App extends React.Component {
         nodes++;
         if (arr[rr][cc] === -1) {
           found = 1;
-          // var acdata = this.state.data;
-          // let s = new Map();
-          // s[1] = "grey";
-          // s[-1] = "red";
-          // s[0] = "white";
-          // let up = [];
-          // acdata.forEach((lst) => {
-          //   let tmp = [];
-          //   lst.forEach((e) => {
-          //     tmp.push(s[e]);
-          //   });
-          //   up.push(tmp);
-          // });
-          // up[parseInt(this.state.source.split(" ")[0])][
-          //   parseInt(this.state.source.split(" ")[1])
-          // ] = "blue";
-          // this.setState({
-          //   path: prev,
-          //   animate: animation,
-          //   ans: "",
-          // });
           console.log("found");
           this.animate(animation, prev, rr, cc);
           break;
@@ -194,15 +180,23 @@ class App extends React.Component {
               borderRadius: "5px",
             }}
             onClick={() => {
-              for(let i=0;i<this.state.rows;i++){
-                for(let j=0;j<this.state.cols;j++){
-                  if(document.getElementById(`node-${i}-${j}`).className === "cell animate" || document.getElementById(`node-${i}-${j}`).className === "cell spath"){
-                    document.getElementById(`node-${i}-${j}`).className = "cell"
+              if (!this.state.disable) {
+                for (let i = 0; i < this.state.rows; i++) {
+                  for (let j = 0; j < this.state.cols; j++) {
+                    if (
+                      document.getElementById(`node-${i}-${j}`).className ===
+                        "cell animate" ||
+                      document.getElementById(`node-${i}-${j}`).className ===
+                        "cell spath"
+                    ) {
+                      document.getElementById(`node-${i}-${j}`).className =
+                        "cell";
+                    }
                   }
                 }
-              }
 
-              this.BFSSearch(this.state.data);
+                this.BFSSearch(this.state.data);
+              }
             }}
           >
             Start
@@ -289,17 +283,19 @@ class App extends React.Component {
               borderRadius: "5px",
             }}
             onClick={() => {
-              var rep = this.state.repeat;
-              if (rep === 4) {
-                this.setState({
-                  repeat: 8,
-                  colorDia: "yellow",
-                });
-              } else {
-                this.setState({
-                  repeat: 4,
-                  colorDia: "white",
-                });
+              if (!this.state.disable) {
+                var rep = this.state.repeat;
+                if (rep === 4) {
+                  this.setState({
+                    repeat: 8,
+                    colorDia: "yellow",
+                  });
+                } else {
+                  this.setState({
+                    repeat: 4,
+                    colorDia: "white",
+                  });
+                }
               }
             }}
           >
@@ -314,18 +310,22 @@ class App extends React.Component {
               borderRadius: "5px",
             }}
             onClick={() => {
-              let acdata = [];
-              for (var i = 0; i < this.state.rows; i++) {
-                let tmp = [];
-                for (var j = 0; j < this.state.cols; j++) {
-                  tmp.push(0);
-                  document.getElementById(`node-${i}-${j}`).className = "cell";
+              if (!this.state.disable) {
+                let acdata = [];
+                for (var i = 0; i < this.state.rows; i++) {
+                  let tmp = [];
+                  for (var j = 0; j < this.state.cols; j++) {
+                    tmp.push(0);
+                    document.getElementById(`node-${i}-${j}`).className =
+                      "cell";
+                  }
+                  acdata.push(tmp);
                 }
-                acdata.push(tmp);
+                this.setState({
+                  data: acdata,
+                  source: "0 0",
+                });
               }
-              this.setState({
-                data: acdata,
-              });
             }}
           >
             Reset
@@ -359,12 +359,12 @@ class App extends React.Component {
         <div style={{ display: "flex", flexDirection: "column" }}>
           {this.state.colorData.map((cdata, i) => (
             <div key={i} style={{ display: "flex", flexDirection: "row" }}>
-              {cdata.map(
-                (color, j) => (
-                  <div
-                    id={`node-${i}-${j}`}
-                    key={`node-${i}-${j}`}
-                    onClick={() => {
+              {cdata.map((color, j) => (
+                <div
+                  id={`node-${i}-${j}`}
+                  key={`node-${i}-${j}`}
+                  onClick={() => {
+                    if (!this.state.disable) {
                       console.log(`node-${i}-${j}`);
                       if (this.state.keepBlock) {
                         let lst = this.state.data;
@@ -384,8 +384,11 @@ class App extends React.Component {
                         document.getElementById(`node-${i}-${j}`).className =
                           "cell destination";
                       } else if (this.state.keepSou) {
-                        document.getElementById(`node-${this.state.source.split(" ")[0]}-${this.state.source.split(" ")[1]}`).className =
-                          "cell";
+                        document.getElementById(
+                          `node-${this.state.source.split(" ")[0]}-${
+                            this.state.source.split(" ")[1]
+                          }`
+                        ).className = "cell";
                         this.setState({
                           source: `${i} ${j}`,
                         });
@@ -400,42 +403,51 @@ class App extends React.Component {
                         document.getElementById(`node-${i}-${j}`).className =
                           "cell";
                       }
-                    }}
-                    className="cell"
-                    onMouseDown={() => {
-                      this.setState({
-                        isMouse: true,
-                      });
-                    }}
-                    onMouseUp={() => {
+                    }
+                  }}
+                  className="cell"
+                  onMouseDown={() => {
+                    this.setState({
+                      isMouse: true,
+                    });
+                  }}
+                  onMouseUp={() => {
+                    if (!this.state.disable) {
                       let arr = this.state.data;
-                      for(let i=0;i<this.state.rows;i++){
-                        for(let j=0;j<this.state.cols;j++){
-                          if(document.getElementById(`node-${i}-${j}`).className === "cell block"){
+                      for (let i = 0; i < this.state.rows; i++) {
+                        for (let j = 0; j < this.state.cols; j++) {
+                          if (
+                            document.getElementById(`node-${i}-${j}`)
+                              .className === "cell block"
+                          ) {
                             arr[i][j] = 1;
+                          } else if (
+                            document.getElementById(`node-${i}-${j}`)
+                              .className === "cell"
+                          ) {
+                            arr[i][j] = 0;
                           }
                         }
                       }
                       this.setState({
                         isMouse: false,
-                        data: arr
+                        data: arr,
                       });
-                    }}
-                    onMouseEnter={() => {
+                    }
+                  }}
+                  onMouseEnter={() => {
+                    if (!this.state.disable) {
                       if (this.state.isMouse && this.state.keepBlock) {
-                        // let lst = this.state.data;
-                        // lst[i][j] = 1;
-                        // console.log(lst);
-                        // this.setState({
-                        //   data: lst,
-                        // });
                         document.getElementById(`node-${i}-${j}`).className =
                           "cell block";
+                      } else if (this.state.isMouse && this.state.erase) {
+                        document.getElementById(`node-${i}-${j}`).className =
+                          "cell";
                       }
-                    }}
-                  ></div>
-                )
-              )}
+                    }
+                  }}
+                ></div>
+              ))}
             </div>
           ))}
         </div>
