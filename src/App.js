@@ -31,7 +31,7 @@ class App extends React.Component {
       if (i === data.length) {
         setTimeout(() => {
           this.animatePath(prev, rr, cc);
-        }, 20 * i + 3500);
+        }, 8 * i + 3500);
         return;
       }
       setTimeout(() => {
@@ -42,7 +42,7 @@ class App extends React.Component {
         )
           document.getElementById(`node-${lst[0]}-${lst[1]}`).className =
             "cell animate";
-      }, 20 * i);
+      }, 8 * i);
     }
   }
 
@@ -159,7 +159,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
+      <div style={{ height: "100vh", width: "100vw", overflow: "hidden", backgroundColor: "white"}}>
         <div
           style={{
             display: "flex",

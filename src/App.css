@@ -50,7 +50,7 @@
 .animate{
   background-color: yellow;
   animation-name: stretch;
-  animation-duration: 4s; 
+  animation-duration: 5s; 
   animation-timing-function: ease-out; 
   animation-delay: 0;
   animation-direction: alternate;
