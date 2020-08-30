@@ -84,6 +84,41 @@
   border-radius: 35%;
 }
 
+.butOn{
+  background-color: grey;
+  color: white;
+  border: 2px solid grey;
+  cursor: pointer;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 10px;
+  transition-duration: 300ms;
+  font-weight: bold;
+}
+
+.butOff{
+  background-color: white;
+  border: 2px solid grey;
+  color: grey;
+  font-weight: bold;
+  cursor: pointer;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 10px;
+  transition-duration: 300ms;
+}
+
+.butOff:hover{
+  background-color: grey;
+  color: white;
+  border: 2px solid grey;
+  cursor: pointer;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 10px;
+  transition-duration: 300ms;
+}
+
 
 
 @keyframes stretch {

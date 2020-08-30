@@ -31,7 +31,7 @@ class App extends React.Component {
       if (i === data.length) {
         setTimeout(() => {
           this.animatePath(prev, rr, cc);
-        }, 10 * i + 3500);
+        }, 20 * i + 3500);
         return;
       }
       setTimeout(() => {
@@ -42,7 +42,7 @@ class App extends React.Component {
         )
           document.getElementById(`node-${lst[0]}-${lst[1]}`).className =
             "cell animate";
-      }, 10 * i);
+      }, 20 * i);
     }
   }
 
@@ -159,7 +159,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ height: "100vh", width: "100vw", overflow: "hidden", backgroundColor: "white"}}>
+      <div
+        style={{
+          height: "100vh",
+          width: "100vw",
+          overflow: "hidden",
+          backgroundColor: "white",
+        }}
+      >
         <div
           style={{
             display: "flex",
@@ -172,13 +179,7 @@ class App extends React.Component {
           }}
         >
           <div
-            style={{
-              cursor: "pointer",
-              border: "1px solid grey",
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              borderRadius: "5px",
-            }}
+            className="butOff"
             onClick={() => {
               if (!this.state.disable) {
                 for (let i = 0; i < this.state.rows; i++) {
@@ -202,38 +203,34 @@ class App extends React.Component {
             Start
           </div>
           <div
-            style={{
-              cursor: "pointer",
-              border: "1px solid grey",
-              backgroundColor: this.state.colorSou,
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              borderRadius: "5px",
-            }}
+            id="keepsource"
+            className="butOff"
             onClick={() => {
               this.setState({
                 keepSou: true,
                 keepDest: false,
                 keepBlock: false,
                 erase: false,
-                colorBlock: "white",
-                colorSou: "yellow",
-                colorDest: "white",
-                colorEra: "white",
+                // colorBlock: "white",
+                // colorSou: "yellow",
+                // colorDest: "white",
+                // colorEra: "white",
               });
+              if (document.getElementById("keepsource").className === "butOn") {
+                document.getElementById("keepsource").className = "butOff";
+              } else {
+                document.getElementById("keepsource").className = "butOn";
+                document.getElementById("keepdestination").className = "butOff";
+                document.getElementById("keepblocks").className = "butOff";
+                document.getElementById("keeperase").className = "butOff";
+              }
             }}
           >
             Keep Source
           </div>
           <div
-            style={{
-              cursor: "pointer",
-              border: "1px solid grey",
-              backgroundColor: this.state.colorDest,
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              borderRadius: "5px",
-            }}
+            id="keepdestination"
+            className="butOff"
             onClick={() => {
               this.setState({
                 keepSou: false,
@@ -245,19 +242,23 @@ class App extends React.Component {
                 colorDest: "yellow",
                 colorEra: "white",
               });
+              if (
+                document.getElementById("keepdestination").className === "butOn"
+              ) {
+                document.getElementById("keepdestination").className = "butOff";
+              } else {
+                document.getElementById("keepdestination").className = "butOn";
+                document.getElementById("keepsource").className = "butOff";
+                document.getElementById("keepblocks").className = "butOff";
+                document.getElementById("keeperase").className = "butOff";
+              }
             }}
           >
             Keep Destiation
           </div>
           <div
-            style={{
-              cursor: "pointer",
-              border: "1px solid grey",
-              backgroundColor: this.state.colorBlock,
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              borderRadius: "5px",
-            }}
+            id="keepblocks"
+            className="butOff"
             onClick={() => {
               this.setState({
                 keepSou: false,
@@ -269,19 +270,21 @@ class App extends React.Component {
                 colorDest: "white",
                 colorEra: "white",
               });
+              if (document.getElementById("keepblocks").className === "butOn") {
+                document.getElementById("keepblocks").className = "butOff";
+              } else {
+                document.getElementById("keepdestination").className = "butOff";
+                document.getElementById("keepsource").className = "butOff";
+                document.getElementById("keepblocks").className = "butOn";
+                document.getElementById("keeperase").className = "butOff";
+              }
             }}
           >
             Keep Blocks
           </div>
           <div
-            style={{
-              cursor: "pointer",
-              border: "1px solid grey",
-              backgroundColor: this.state.colorDia,
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              borderRadius: "5px",
-            }}
+            id="enableDia"
+            className="butOff"
             onClick={() => {
               if (!this.state.disable) {
                 var rep = this.state.repeat;
@@ -296,19 +299,20 @@ class App extends React.Component {
                     colorDia: "white",
                   });
                 }
+                if (
+                  document.getElementById("enableDia").className === "butOn"
+                ) {
+                  document.getElementById("enableDia").className = "butOff";
+                } else {
+                  document.getElementById("enableDia").className = "butOn";
+                }
               }
             }}
           >
             Enable Diagonal
           </div>
           <div
-            style={{
-              cursor: "pointer",
-              border: "1px solid grey",
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              borderRadius: "5px",
-            }}
+            className="butOff"
             onClick={() => {
               if (!this.state.disable) {
                 let acdata = [];
@@ -331,14 +335,8 @@ class App extends React.Component {
             Reset
           </div>
           <div
-            style={{
-              cursor: "pointer",
-              border: "1px solid grey",
-              backgroundColor: this.state.colorEra,
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              borderRadius: "5px",
-            }}
+            id="keeperase"
+            className="butOff"
             onClick={() => {
               this.setState({
                 keepSou: false,
@@ -350,6 +348,14 @@ class App extends React.Component {
                 colorDest: "white",
                 colorEra: "yellow",
               });
+              if (document.getElementById("keeperase").className === "butOn") {
+                document.getElementById("keeperase").className = "butOff";
+              } else {
+                document.getElementById("keepdestination").className = "butOff";
+                document.getElementById("keepsource").className = "butOff";
+                document.getElementById("keepblocks").className = "butOff";
+                document.getElementById("keeperase").className = "butOn";
+              }
             }}
           >
             Erase
