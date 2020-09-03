@@ -5,8 +5,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows: 30,
-      cols: 60,
+      rows: 25,
+      cols: 55,
       data: [],
       colorData: [],
       keepSou: false,
@@ -171,11 +171,13 @@ class App extends React.Component {
           style={{
             display: "flex",
             flexDirection: "row",
-            height: "4vh",
+            height: "10vh",
             justifyContent: "space-around",
             paddingTop: "1vh",
             paddingBottom: "1vh",
             borderBottom: "1px solid grey",
+            alignItems: "center",
+            backgroundColor: "grey"
           }}
         >
           <div
