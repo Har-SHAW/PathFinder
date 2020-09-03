@@ -61,6 +61,7 @@
   animation-fill-mode: none;
   animation-play-state: running;
   border-radius: 0%;
+  border: 1px solid white;
 }
 
 .spath{
@@ -73,6 +74,7 @@
   animation-iteration-count: 1;
   animation-fill-mode: none;
   animation-play-state: running;
+  border: 1px solid white;
 }
 
 .snormal{
