@@ -10,7 +10,7 @@
 } */
 
 .source{
-  background-color: blue;
+  background-color: red;
   border-radius: 100%;
   animation-name: normal;
   animation-duration: 100ms; 
@@ -20,11 +20,11 @@
   animation-iteration-count: 1;
   animation-fill-mode: none;
   animation-play-state: running;
-  border-color: blue;
+  border-color: red;
 }
 
 .destination{
-  background-color: blueviolet;
+  background-color: dodgerblue;
   animation-name: normal;
   animation-duration: 100ms; 
   animation-timing-function: ease-out; 
@@ -34,7 +34,7 @@
   animation-fill-mode: none;
   animation-play-state: running;
   border-radius: 100%;
-  border-color: blueviolet;
+  border-color: dodgerblue;
 }
 
 .block{
@@ -65,7 +65,7 @@
 }
 
 .spath{
-  background-color: lightcoral;
+  background-color: limegreen;
   animation-name: apath;
   animation-duration: 400ms; 
   animation-timing-function: ease-out; 
