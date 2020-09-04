@@ -5,7 +5,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows: 25,
+      rows: 23,
       cols: 55,
       data: [],
       colorData: [],
