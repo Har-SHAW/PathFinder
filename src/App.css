@@ -164,18 +164,17 @@
 
 @keyframes apath {
   0% {
-    transform: scale(.3);
-    border-radius: 100%;
+    transform: scale(0);
     outline: 1px solid white;
   }
   25%{
-    transform: scale(.6)
+    transform: scale(.3)
   }
   50% {
-    transform: scale(.9);
+    transform: scale(.6);
   }
   75%{
-    transform: scale(1.2);
+    transform: scale(0.9);
   }
   100% {
     transform: scale(1);
