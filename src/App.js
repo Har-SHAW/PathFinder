@@ -5,8 +5,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows: 23,
-      cols: 55,
+      // rows: 23,
+      // cols: 55,
+      rows: (window.innerHeight*0.87)/25,
+      cols: window.innerWidth/25,
       data: [],
       colorData: [],
       keepSou: false,
